@@ -1,11 +1,10 @@
+import chromedriver_autoinstaller
 import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 from helpers import find_movies, get_movie_value
-import chromedriver_autoinstaller
-
 
 # Check if the current version of chromedriver exists
 chromedriver_autoinstaller.install()
@@ -29,7 +28,7 @@ cols = ['title',
 df = pd.DataFrame(columns=cols)
 
 # set up first link to check for movies
-imdb_query = 'https://www.imdb.com/search/title/?keywords=independent-film&sort=release_date,desc&after=Wy05MjIzMzcyMDM2ODU0Nzc1ODA4LCJ0dDY2MjA3OTgiLDQyNzAxXQ%3D%3D&ref_=adv_nxt'
+imdb_query = 'https://www.imdb.com/search/title/?keywords=independent-film&sort=release_date,desc'
 driver.get(imdb_query)
 
 
