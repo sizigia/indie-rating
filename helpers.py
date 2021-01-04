@@ -104,11 +104,12 @@ def parse_and_format_values(value, attribute):
         return np.nan
 
 
-def get_unique_values(df, column):
+def get_col_unique_values(df, column, char=None):
     """ 
     Arguments:
         df: pandas.DataFrame
         column: str
+        char: if type_ is str, then char would be use to split it. Default None.
 
     Returns:
         set of unique values in the DataFrame column indicated
@@ -117,8 +118,15 @@ def get_unique_values(df, column):
 
     for row in df[column]:
         try:
-            unique_values.update(row)
-        except TypeError:
+            if row is np.nan:
+                pass
+            else:
+                if char:
+                    row = row.split(char)
+                else:
+                    row = {row}
+                unique_values.update(row)
+        except AttributeError:
             pass
 
     return unique_values
